@@ -67,31 +67,107 @@ Nonostante queste limitazioni, per via della loro grande precisione, sono consid
 
 Deep learning(DL) è una branca del Machine learning(ML) che a sua volta è una branca dell'Intelligenza Artificiale(AI). La figura in basso mostra la relazione esistente fra AI, ML e DL.
 
-Il modo più semplice per pensare all'Intelligenza Artificiale, al Machine Learning, alle Reti Neurali e al Deep Learning è quello di pensare alle matrioske: ogni termine è un componente del termine precedente. 
+Il modo più semplice per pensare all'Intelligenza Artificiale, al Machine Learning, alle Reti Neurali Artificiali e al Deep Learning è quello di pensare alle matrioske: ogni termine è un componente del termine precedente. 
 Le reti neurali sono una branca del Machine learning(ML) che a sua volta è una branca dell'Intelligenza Artificiale(AI). 
 Quando una rete neurale ha più di 3 layer, si parla di Deep Learning(DL). 
+
+#### Perceptron
+
+Il primo modello matematico per un neurone artificiale è stato il Threshold Logic Unit proposto da Warren S.McCulloch e Walter H.Pitts Jr nel 1943.[[10]](#10).
+Il modello presentato può essere descritto attraverso le seguenti regole: 
+
++ Un output binario y $\in$​​ {0, 1}, dove y = 1 inica che il neurone si attiva e y = 0 che il neurone è a riposo. 
++ Ha un numero N di ingressi binari eccitatori $X_k$ $\in$ {0, 1}
++ Ha un solo ingresso i. Se questo è acceso, il neurone non può attivarsi. 
++ Ha un valore di soglia $\Theta$. Se la somma dei suoi ingressi è maggiore di questo valore critico. Il neurone si attiva, altrimenti rimane a riposo. 
+
+Dato l'input X = $[X_1, X-2, X_3,...,X_n]$​, l'input $i$​, e il valore di soglia $\Theta$​, l'output è calolato come segue. 
+
+$f(x)$​ = $\left\{ \begin{array}{rcl} {1} & se \sum X_k > \Theta & e &i = 0, \\ 0 & altrimenti \end{array}\right.$​
+
+15 anni dopo il neurone di McCulloch e Pitts, Frank Rosemblat (MPC), ideo il perceptron, un miglioramento rispetto al MPC. 
+Il principale di Rosemblatt è stato quello di dimostrare che, rilassando alcune delle vecchie regole, in particolare l'uguale contributo di tutti gli ingressi e la loro natura intera, i neuroni artificiali potevano effettivamente imparare dai dati. 
+Rosemblatt ha anche ideato un primo algortmo che ha permesso al neurone artificiale di capire da solo i pesi corretti direttamente dai dati dati di addestramento. L'algoritmo può gestire solo classificazioni per classi linearmente separabili.
+
+(Figura: separabili_nonseparabili, didascalia: si noti come in realtà l'esempio a destra possa essere trattato dal perceptron dopo una fase di preprocessing che lo riconduca ad un problema linearmente separabile)
+
+(Figura: perceptron)
+
+Nel 1969 Marvin Minsky e Seymour Papert pubblicarono il famoso libro Perceptrons: an introduction to computational geometry nel quale dimostravano quanto fosse limitato il perceptron di Rosemblat e qualsiasi altro perceptron a singolo strato, e in particolare, mostravano come non fosse in grado di imparare la semplice funzione logica XOR. 
 
 #### Reti neurali Artificiale
 
 Una rete neurale artificiale è un paradigma di elaborazione ispirato al cervello umano. Una rete neurale artificiale è in grado di imparare e generalizzare dall'esperienza. Una delle principali aree nel quale è utilizzata è la previsione, ma trova spazio anche nella classificazione e nel riconoscimento di modelli. 
 A differenza dei metodi statistici tradizionali, ha forme più generali e flessibili ed è in grado di eseguire una modellazione non lineare senza una conoscenza delle relazioni tra le variabili di input e di output. 
-
-#### Perceptron
-
-Il percettrone è una delle rappresentazioni più semplici di un neurone. E' una unità ad input multiplo e output singolo.
-Ogni percettrone può prendere semplici decisioni e comunicarle ai neuroni collegati ad esso. Frank Rosemblat, lo sviluppatore del percettrone ha stabilito che ogni collegamento ha un peso associato, il quale rappresenta l'importanza di quella connessione per il risultato finale. L'output è di tipo binario ed è determinato confrontando la somma pesata Ej wjxj  con una soglia. La soglia è uno dei parametri del neutrone. 
-
-
+Una rete neurale con un singolo strato è un Perceptron. Un perceptron multi-strato è una rete neurale artificiale. 
+Il ciclo di vita di una Rete Neurale Artificiale è divisa in due fasi, la prima è la fase di addestramento e l'altra la fase di predizione. 
+Nella fase di addestramento si cercano i valori dei pesi e del bias. Nella fase di predizione invece, la rete neurale elabora l'input al fine di produrre previsioni. 
+Il processo di apprendimento di una rete neurale è composto da una fase di andata e una di ritorno, rispettivamente chiamate Forward Propagation e Backward Propagation
 
 #### Forward Propagation
 
+Come suggerisce il nome, i dati input vengono elaborati in avanti attraverso la rete. Ogni strato nascosto accetta i dati in input, li elabora a seconda della propria funzione di attivazione e li passa allo strato successivo. 
+Per generare un output, i dati devono obbligatoriamente fluire solo in avanti. Se fluissero anche all'indietro si formerebbe un ciclo e nessun output sarebbe generato. 
+In ogni neurone dello strato nascosto o di uscita, l'elaborazione avviene in due fasi: 
+
+1. Preattivazione: viene effettuata una somma pesata di tutti i valori in input e viene aggiunto un bias. 
+2. Attivazione: la somma pesata degli input è passata alla funzione di attivazione. La funzione di attivazione aggiunge non linearità alla rete. 
+
+Sulla base del risultato ottenuto, il neurone decide se inoltrare le informazioni al neurone successivo. 
+
+#### Activation functions
+
 #### Backward Proagation
+
+E' probabilmente una delle colonne portanti delle reti neurali. E' stata introdotta per la prima volta nel 1970 e poi riscoperta nel 1989 da Rumelhart, Hinton and Williams [[11]](#11). 
+E' un algoritmo per il supervised learning di reti neurali artificiali che utilizza la discesa del gradiente. 
+Data una rete neurale artificiale e una funzione di errore, viene calcolato il gradiente della funzione di errore rispetto ai pesi della rete. 
+Il calcolo del gradiente viene fatto procedendo all'indietro nei nodi della rete. I calcoli parziali del gradiente in uno strato sono riutilizzati nel calcolo per lo strato precedente. Questo flusso all'indietro ne permette un calcolo efficiente. 
 
 #### Recurrent Neural Network
 
 #### Convolutional neural network
 
-#### Activation functions
+#### Layer più importanti
+
+I layer più importanti per comporre una rete sono: i layer convoluzionali, i pooling layer e i layer dense. Il dropout layer si è rivelato un layer importante nella regolarizzazione. 
+
+##### Dense layer
+
+Utilizza un insieme lineare di connessioni tra l'input e l'output. Tutti i neuroni di uno dense layer sono connessi a tutti i neuroni dello strato successivo. In questo modo ogni unità prende l'input da tutte le unità precedenti e lo trasferisce a quelle successive. 
+Questo porta a un calcolo matrice-vettore molto semplice, ma anche ad un insieme molto grande di parametri addestrabili. 
+Reti neurali composte da layer densi sono utili per dati a bassa dimensione, mentre i calcoli possono diventare molto onerosi nei casi in cui i dati sono ad alta dimensione, come nel caso delle immagini. 
+
+##### Convolutional layer
+
+Uno strato convoluzionale contiene un insieme di filtri i cui parametri devono essere appresi. L'altezza e il peso dei filtri sono più piccoli di quelli del volume di input. Il filtro viene fatto scorrere attraverso la larghezza e l'altezza dell'input e in ogni posizione viene calcolato il prodotto scalare fra l'input e il filtro per creare una mappa di attivazione fatta di neuroni. L'output di uno strato convoluzionale è ottenuto impilando le mappe di attivazione di tutti i filtri. 
+Poichè la larghezza e l'altezza di ogni filtro è progettata er essere più piccola dell'input, ogni neurone nella mappa di attivazione è collegato solo ad una piccola regione locale dell'input [[12]](#12).
+Questa soluzione è ispirata alla corteccia visiva animale, dove i campi recettivi delle cellule sono molto piccoli. 
+La connettività locale dello strato convoluzionale, consente alla rete di imparare filtri che corrispondono a una regione locale dell'input, questa possibilità è molto importante dal momento che data un'immagine in input, un pixel è più correlato ai pixel vicini rispetto a quelli lontani. 
+
+##### Pooling Layer
+
+Simile allo strato convoluzionale, il pooling layer è responsabile della riduzione della dimensione spaziale, utile per diminuire la potenza di calcolo richiesta per elaborare i dati. Esistono due tipi di pooling: Max Pooling e Average Pooling. 
+Il Max Pooling restituisce il valore massimo dalla porzione di immmagine coperta dal filtro. 
+L'Average Pooling restituisce la media di tutti i valori della porzione di immagine coperta dal filtro. 
+Average Pooling si limita ad eseguire una riduzione della dimensionalità, mentre Max Pooling funziona anche come soppressore del rumore, scartando del tutto le attivazioni rumorose.
+Il Pooling Layer è spesso incorporato fra due strati convoluzionali successivi. 
+
+##### Dropout Layer
+
+Dropout è un metodo per la regolarizzazione nelle reti neurali artificiali. L'idea chiave è quella di disabilitare alcune unità di input in modo totalmente casuale durante la fase di training. 
+In ogni fase dell'addestramento, i singoli nodi vengono eliminati dalla rete con probabilità 1 - p o mantenuti con probabilità p. Anche i nodi di input e output possono essere rimossi. 
+Questa tecnica riduce significativamente l'overfitting e fornisce miglioramenti significativi rispetto ad altri metodi di regolarizzazione. 
+Qualche considerazione sul dropout: 
+
+1. Il dropout costringe una rete neurale ad apprendere caratteristiche più robuste che sono utili in combinazione con molti sottoinsiemi casuali diversi degli altri neuroni
+2. Il dropout raddoppia approssimativamente il numero di iterazioni richieste per convergere. Tuttavia il tempo di addestramento per ogni epoca è inferiore. 
+3. Con H unità nascoste che possono essere eliminate, abbiamo $2^H$​​ ​modelli possibili. 
+
+##### Flatten Layer
+
+Lo strato flatten serve a rimuovere tutte le dimensionalità eccetto una. In altre parole, partendo da una matrice, viene creato un array unidimensionale. 
+Se l'ultimo strato convoluzionale restituisse in output un tensore (28, 28, 3), applicando il flattening avremmo un tensore (2532, 1). 
 
 #### Overfitting e Underfitting
 
@@ -102,7 +178,7 @@ In teoria, se la capacità di rappresentazione può essere arbitrariamente alta,
 
 Quando un algoritmo è in grado di rendere piccolo l'errore sui dati di addestramento ma perde la capacità di generalizzare, siamo di fronte ad overfitting.
 Viceversa, quando un algoritmo è caratterizzato da un'alto bias e una bassa varianza, non riesce a minimizzare l'errore nei dati di addestramento, siamo di conseguenza di fronte ad underfitting. 
-(figura underfitting_overfitting, didascalia: nella parte sinistra dell'immagine possiamo notare come l'erorre nel training e l'errore di generalizzazione siano entrambi alti, siamo infatti nella zona di underfitting. Incrementando la capacità, l'errore sul training diminuisce, ma aumenta il gap fra errore di training e di generalizzazione. Spostandosi verso destra, il divario aumenta e si entra nella zona di overfitting, dove a capacità è troppo grande, al di sopra della capacità ottimale [[8]](#8))
+(figura: underfitting_overfitting, didascalia: nella parte sinistra dell'immagine possiamo notare come l'erorre nel training e l'errore di generalizzazione siano entrambi alti, siamo infatti nella zona di underfitting. Incrementando la capacità, l'errore sul training diminuisce, ma aumenta il gap fra errore di training e di generalizzazione. Spostandosi verso destra, il divario aumenta e si entra nella zona di overfitting, dove a capacità è troppo grande, al di sopra della capacità ottimale [[8]](#8))
 
 
 
@@ -117,7 +193,7 @@ L'input è una immagine RGB. L'architettura multi-stage delle Reti Neurali Convo
 Il tool è disponibile gratuitamente e può essre utilizzato su differenti piattaforme hardware e software. E' possibile personalizzare alcune impostazioni come la sorgente di input, che può essere una immagine, un video oppure la webcam. 
 Una volta che il video è stato acquisito, OpenPose restituisce un file in formato JSON per ogni frame del video, contenente le coordinate 2D di ogni keypoint rilevato e la rispettiva confidenza nell'affermare che quel keypoint sia in quell'esatto pixel. 
 
-Nel paper di riferimento, viene dimostrato come un algoritmo di parsing greedy è sufficiente per produrre una rappresentazione della posa di alta qualità, conservando l'efficienza indipendentemente dal numero di persone 
+Nel paper di riferimento, viene dimostrato come un algoritmo di parsing greedy è sufficiente per produrre una rappresentazione della posa di alta qualità, conservando l'efficienza indipendentemente dal numero di persone.
 
 # Analisi dell'andatura proposto
 
@@ -137,6 +213,9 @@ Nel paper di riferimento, viene dimostrato come un algoritmo di parsing greedy �
 <a id="6">[6]</a> Deep Learning for Monitoring of Human Gait: A Review
 <a id="7">[7]</a> OpenPose
 <a id="8">[8]</a> I. Goodfellow, Y. Bengio, and A. Courville, Deep Learning. MIT Press, 2016, http: //www.deeplearningbook.org
-
-
+<a id="9">[9]</a> Rosenblatt, F. 1957. The Perceptron — a perceiving and recognizing automaton.
+<a id="10">[10]</a> McCulloch, W. S., and Pitts, W. 1943. A logical calculus of the ideas immanent in nervous activity. 
+<a id="11">[11]</a> Learning representations by back-propagating errors
+<a id="12">[12]</a> Computer Vision for Assistive Healthcare, chapter 5.
+<a id="13">[13]</a> Dropout: A simple way to prevent neural networks from overfitting
 
