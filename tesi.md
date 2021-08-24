@@ -6,7 +6,7 @@ I disturbi dell'andatura portano ad una perdita della libertà personale, a cadu
 Negli anziani, la velocità è un potente predittore della mortalità.
 L'attrezzatura e le metodologie utilizzate per l'analisi della camminata hanno fatto sostanziali progressi negli ultimi anni. Gli strumenti utilizzati permettono di diagnostiare in modo più efficiente e accurato coloro che hanno subito una lesione che influisce sulla loro capacità di camminare.  
 
-Il campo della ricerca sull'andatura umana è ampio. Nel campo sanitario, poichè le anomalie nella camminata colpiscono un'alta percentuale della popolazione, l'andatura viene studiata per diagnosticare malattie neurodegenerative come il morbo di Parkinson, mielopatia, amiotrofia spinale, sclerosi multipla, atassia celebrale, tumori celebrali, alcuni tipi di demenza, malattie neuromusclari ecc..[[6]](#6)
+Il campo della ricerca sull'andatura umana è ampio. Nel campo sanitario, poichè le anomalie nella camminata colpiscono un'alta percentuale della popolazione, l'andatura viene studiata per diagnosticare malattie neurodegenerative come il morbo di Parkinson, mielopatia, amiotrofia spinale, sclerosi multipla, atassia celebrale, tumori celebrali, alcuni tipi di demenza, malattie neuromusclari ecc..[[6]](#6)  
 
 I sistemi tradizionali per la valutazione della camminata sono semi-soggettivi perchè sono svolti da specialisti che ne osservano la qualità facendo camminare il paziente. I risultati non si basano su rilevazioni oggettive ma su valutazioni soggettive. [[2]](#2)
 Le nuove tecnologie hanno permesso agli specialisti di estrarre informazioni oggettive dalle diagnosi, riducendo quindi il margine di errore. 
