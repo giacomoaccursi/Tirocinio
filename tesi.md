@@ -95,7 +95,7 @@ Rosemblatt ha anche ideato un primo algortmo che ha permesso al neurone artifici
 
 Nel 1969 Marvin Minsky e Seymour Papert pubblicarono il famoso libro Perceptrons: an introduction to computational geometry nel quale dimostravano quanto fosse limitato il perceptron di Rosemblat e qualsiasi altro perceptron a singolo strato, e in particolare, mostravano come non fosse in grado di imparare la semplice funzione logica XOR. 
 
-#### Reti neurali Artificiale
+#### Reti neurali Artificiali
 
 Una rete neurale artificiale è un paradigma di elaborazione ispirato al cervello umano. Una rete neurale artificiale è in grado di imparare e generalizzare dall'esperienza. Una delle principali aree nel quale è utilizzata è la previsione, ma trova spazio anche nella classificazione e nel riconoscimento di modelli. 
 A differenza dei metodi statistici tradizionali, ha forme più generali e flessibili ed è in grado di eseguire una modellazione non lineare senza una conoscenza delle relazioni tra le variabili di input e di output. 
@@ -103,6 +103,16 @@ Una rete neurale con un singolo strato è un Perceptron. Un perceptron multi-str
 Il ciclo di vita di una Rete Neurale Artificiale è divisa in due fasi, la prima è la fase di addestramento e l'altra la fase di predizione. 
 Nella fase di addestramento si cercano i valori dei pesi e del bias. Nella fase di predizione invece, la rete neurale elabora l'input al fine di produrre previsioni. 
 Il processo di apprendimento di una rete neurale è composto da una fase di andata e una di ritorno, rispettivamente chiamate Forward Propagation e Backward Propagation
+
+##### Fase di addestramento
+
+La fase di addestramento consiste nel trovare i giusti pesi per ogni strato della rete. 
+Per controllare l'output di una rete neurale occorre misurare quanto quell'output è lontano dal risultato aspettato. Questo è il ruolo della funzione di costo. La funzione di costo calcola la distanza fra l'output atteso e l'output predetto, rivelando in tal modo quanto la rete è stata addestrata bene in quello specifico caso [[14]](#14).
+Il punteggio ottenuto viene utilizzato come feedback per aggiustare i pesi, con lo scopo di minimizzare la perdita. 
+Questo aggiustamento viene fatto tramite l'uso dell'algoritmo di backpropagation.
+Inizialmente, i pesi nella rete vengono inizializzati con numeri casuali. Ovviamente in questo primo momento, gli output saranno lontani dai risultati sperati e il punteggio di perdita sarà molto alto. 
+Man mano che la rete elabora i dati di training, i pesi vengono aggiustati. Il ciclo di addestramento viene ripetuto un numero di volte tale da ridurre la funzione di perdita. 
+Se la rete è stata addestrata correttamente, i suoi output saranno il più vicino possibile ai risultati reali. 
 
 #### Forward Propagation
 
@@ -116,6 +126,43 @@ In ogni neurone dello strato nascosto o di uscita, l'elaborazione avviene in due
 Sulla base del risultato ottenuto, il neurone decide se inoltrare le informazioni al neurone successivo. 
 
 #### Activation functions
+
+Quando un neurone calcola la somma pesata degli input e aggiunge un bias deve decidere se attivarsi o meno. Considerando un neurone: $ Y = \sum(weight * input) + bias$​​​. 
+Il valore di $Y$​​​​ pu​ò essere qualunque valore nel range $(-inf  ,+inf$​​​​​​), la funzione di attivazione consente al neurone di capire se attivarsi o no. 
+
+##### Step Function
+
+E' la funzione di attivazione più semplice. Se $Y$​​ è superiore ad una certa soglia, il neurone si attiva, altrimenti rimane a riposo. 
+Il problema principale di questo approccio è il fatto che si possono trovare più neuroni di output attivati con valore 1, che non consentono di capire quale sia la classe predetta. 
+Una rete con queste caratteristiche è difficile da addestrare e porta a problemi di convergenza.
+
+##### Sigmoid Function
+
+$f(x) = \frac{1}{1 + e^{(-x)}}$​​​​​​​ .
+
+E' una funzione matematica a forma si S. Viene utilizzata quando si necessita di un classificatore che risolva problemi con più di una risposta esatta. La funzione sigmoide ritorna per ogni input un valore compreso fra 0 e 1. 
+Il problema principale di questa funzione è che ha una derivata a corto raggio che porta ad una perdita di informazioni. In particolare se nella rete neurale ci sono più strati, più dati vengono compressi e persi in ciascun strato traducendosi in una significativa perdita di dati nel complesso. 
+
+##### Softmax Function
+
+$f(x_i) = \frac{e^{Z_i}}{\sum_{i}{e^{x_i}}}$​​ 
+E' una funzione di attivazione che prende in input un vettore di numeri reali e li normalizza in una distribuzione di probabilità proporzionale agli esponenziali dei valori in input. 
+I valori di output avranno un valore compreso fra 0 e 1 e la loro somma sarà uguale ad 1.  
+E' simile alla funzione sigmoide, la differenza sostanziale è che la funzione sigmoide produce output indipendenti.
+
+##### Tanh Function
+
+$f(x) = \frac{2}{1 + e^{-2x}} - 1  = 2 sigmoid(2x) -1 $   
+E' una funzione sigmoide scalata. I valori di output sono nel range (-1, 1), le derivate sono più ripide rispetto alla sigmoide.
+
+##### ReLu (Rectified Linear Activation Function)
+
+$f(x) = max(0, x)$​​​​
+La funzione ReLu restituisce valori positivi se l'input è positivo, 0 altrimenti. 
+Nelle reti con funzioni di attivazione tanh o sigmoide, l'attivazione dei neuroni sarà di tipo denso poichè quasi tutti i neuroni saranno attivati. Con la funzione ReLu, invece, quasi il 50% della rete produce 0 attivazione, grazie al fatto che ReLu restituisce valore 0 per input negativi. 
+Un minor numero di attivazioni si traduce in una rete più leggera.
+Il problema principale è che i valori negativi diventano 0 immediatamente, questo fatto riduce l'abilità del modello di allenarsi sui dati a disposizione, per questo motivo sono state implementate alcune varianti di ReLu come ad esempio Leaky ReLu, che restituisce $y = 0.01x$ per $x < 0$.
+
 
 #### Backward Proagation
 
@@ -218,4 +265,5 @@ Nel paper di riferimento, viene dimostrato come un algoritmo di parsing greedy �
 <a id="11">[11]</a> Learning representations by back-propagating errors
 <a id="12">[12]</a> Computer Vision for Assistive Healthcare, chapter 5.
 <a id="13">[13]</a> Dropout: A simple way to prevent neural networks from overfitting
+<a id="14">[14]</a> Deep learnign with python. Francois Chollet
 
