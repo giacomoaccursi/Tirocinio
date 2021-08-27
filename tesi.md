@@ -67,13 +67,11 @@ Nonostante queste limitazioni, per via della loro grande precisione, sono consid
 
 
 
-## Deep Learning
-
-Deep learning(DL) è una branca del Machine learning(ML) che a sua volta è una branca dell'Intelligenza Artificiale(AI). La figura in basso mostra la relazione esistente fra AI, ML e DL.
+## Reti Neurali artificiali
 
 Il modo più semplice per pensare all'Intelligenza Artificiale, al Machine Learning, alle Reti Neurali Artificiali e al Deep Learning è quello di pensare alle matrioske: ogni termine è un componente del termine precedente. 
-Le reti neurali sono una branca del Machine learning(ML) che a sua volta è una branca dell'Intelligenza Artificiale(AI). 
-Quando una rete neurale ha più di 3 layer, si parla di Deep Learning(DL). 
+Le reti neurali sono una branca del Machine learning (ML) che a sua volta è una branca dell'Intelligenza Artificiale (AI). 
+Quando una rete neurale ha più di 3 layer, si parla di Deep Learning (DL). 
 
 ### Perceptron
 
