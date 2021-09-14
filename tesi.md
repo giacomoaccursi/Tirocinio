@@ -34,6 +34,7 @@ Vengono utilizzati per calcolare la rotazione fra due segmenti del corpo umano. 
 Sono dispositivi che, attraverso accelerometri, giroscopi e qualche volta magnetometri, misurano la velocità di un oggetto, la sua accelerazione e l'orientamento. L'accelerometro usa i fondamenti delle leggi di Newton le quali dicono che l'accelerazione di un corpo è proporzionale alla forza netta che agisce su esso, quindi conoscendo il quoziente di proporzionalità (massa dell'oggetto) e tutte le forze misurate dai sensori, si riesce a calcolare l'accelerazione. Con l'integrazione dell'accelerazione troviamo la velocità, e integrandola otteniamo la posizione riferita ai 3 assi. Integrando la velocità angolare otteniamo l'angolo di flessione e attraverso algoritmi di filtraggio e classificazione possiamo estrarre il numero di passi fatti. [[2]](#2)
 I vantaggi di tale sistema risiedono nella sua intrinseca portabilità, affidabilità e accuratezza. 
 A differenza degli elettrogoniometri sono complessi e costosi, ma sono capaci di analizzare il movimento tridimensionale del cammino umano. 
+La miniaturizzazione dei sensori inerziali permette di integrarli in solette che includono anche sensori di pressione per il rilevamento distribuito della forza plantare, moduli di comunicazione bluetooth e un sistema di ricarica induttiva[[2]](#2).
 
 ### Sensori ad Ultrasuoni
 
@@ -83,7 +84,7 @@ Il modello presentato può essere descritto attraverso le seguenti regole:
 + Ha un solo ingresso $i$. Se questo è acceso, il neurone non può attivarsi. 
 + Ha un valore di soglia $\Theta$. Se la somma dei suoi ingressi è maggiore di questo valore critico, il neurone si attiva, altrimenti rimane a riposo. 
 
-Dato l'input X = $[X_1, X-2, X_3,...,X_n]$​, l'input $i$​, e il valore di soglia $\Theta$​, l'output è calolato come segue. 
+Dato l'input $X = [X_1, X_2, X_3,...,X_n]$, l'input $i$, e il valore di soglia $\Theta$​, l'output è calolato come segue. 
 
 $f(x)$​ = $\left\{ \begin{array}{rcl} {1} & se \sum X_k > \Theta & e &i = 0, \\ 0 & altrimenti \end{array}\right.$​
 
@@ -91,7 +92,7 @@ $f(x)$​ = $\left\{ \begin{array}{rcl} {1} & se \sum X_k > \Theta & e &i = 0, \
 Il principale contributo di Rosemblatt è stato quello di dimostrare che, rilassando alcune delle vecchie regole, in particolare l'uguale contributo di tutti gli ingressi e la loro natura intera, i neuroni artificiali potevano effettivamente imparare dai dati. 
 I pesi, introdotti da Rosemblat determinano l'importanza di un determinato input rispetto all'output. 
 
-$f(x)$ = $\left\{ \begin{array}{rcl} {1} & se \sum X_k W_k> \Theta & e &i = 0, \\ 0 & altrimenti \end{array}\right.$
+$f(x) = \left\{ \begin{array}{rcl} {1} & se \sum X_k W_k> \Theta & e &i = 0, \\ 0 & altrimenti \end{array}\right.$
 
 Rosemblatt ha anche ideato un primo algortmo che ha permesso al neurone artificiale di capire da solo i pesi corretti direttamente dai dati dati di addestramento. L'algoritmo può gestire solo classificazioni per classi linearmente separabili.
 
@@ -144,28 +145,28 @@ Una rete con queste caratteristiche è difficile da addestrare e porta a problem
 
 #### Sigmoid Function
 
-$f(x) = \frac{1}{1 + e^{(-x)}}$​​​​​​​ .
+$$f(x) = \frac{1}{1 + e^{(-x)}}$$​​​​​​​ .
 
-E' una funzione matematica a forma si S. Viene utilizzata quando si necessita di un classificatore che risolva problemi con più di una risposta esatta. La funzione sigmoide ritorna per ogni input un valore compreso fra 0 e 1. 
+E' una funzione matematica a forma di S. Viene utilizzata quando si necessita di un classificatore che risolva problemi con più di una risposta esatta. La funzione sigmoide ritorna per ogni input un valore compreso fra 0 e 1. 
 Il problema principale di questa funzione è che ha una derivata a corto raggio che porta ad una perdita di informazioni. In particolare se nella rete neurale ci sono più strati, più dati vengono compressi e persi in ciascun strato traducendosi in una significativa perdita di dati nel complesso. 
 
 #### Softmax Function
 
-$f(x_i) = \frac{e^{Z_i}}{\sum_{i}{e^{x_i}}}$​​ 
+$$f(x_i) = \frac{e^{Z_i}}{\sum_{i}{e^{x_i}}}$$​​ 
 E' una funzione di attivazione che prende in input un vettore di numeri reali e li normalizza in una distribuzione di probabilità proporzionale agli esponenziali dei valori in input. 
 I valori di output avranno un valore compreso fra 0 e 1 e la loro somma sarà uguale ad 1.  
 E' simile alla funzione sigmoide, la differenza sostanziale è che la funzione sigmoide produce output indipendenti.
 
 #### Tanh Function
 
-$f(x) = \frac{2}{1 + e^{-2x}} - 1  = 2 sigmoid(2x) -1 $   
+$$f(x) = \frac{2}{1 + e^{-2x}} - 1  = 2·sigmoid(2x) -1 $$   
 E' una funzione sigmoide scalata. I valori di output sono nel range (-1, 1), le derivate sono più ripide rispetto alla sigmoide.
 
 #### ReLu (Rectified Linear Activation Function)
 
-$f(x) = max(0, x)$​​​​
+$$f(x) = max(0, x)$$​​​​
 La funzione ReLu restituisce valori positivi se l'input è positivo, 0 altrimenti. 
-Nelle reti con funzioni di attivazione tanh o sigmoide, l'attivazione dei neuroni sarà di tipo denso poichè quasi tutti i neuroni saranno attivati. Con la funzione ReLu, invece, quasi il 50% della rete produce 0 attivazione, grazie al fatto che ReLu restituisce valore 0 per input negativi. 
+Nelle reti con funzioni di attivazione tanh o sigmoide, l'attivazione dei neuroni sarà di tipo denso poichè quasi tutti i neuroni saranno attivati. Con la funzione ReLu, invece, quasi il 50% della rete non produce attivazioni, grazie al fatto che ReLu restituisce valore 0 per input negativi. 
 Un minor numero di attivazioni si traduce in una rete più leggera.
 Il problema principale è che i valori negativi diventano 0 immediatamente, questo fatto riduce l'abilità del modello di allenarsi sui dati a disposizione, per questo motivo sono state implementate alcune varianti di ReLu come ad esempio Leaky ReLu, che restituisce $y = 0.01x$ per $x < 0$.
 
@@ -177,15 +178,42 @@ E' un algoritmo per il supervised learning di reti neurali artificiali che utili
 La discesa del gradiente ha come scopo la scoperta del minimo locale di una funzione, muovendosi iterativamente nella direzione opposta al gradiente della funzione nel punto corrente. 
 Il calcolo del gradiente viene fatto procedendo all'indietro nei nodi della rete. I calcoli parziali del gradiente in uno strato sono riutilizzati nel calcolo per lo strato precedente. Questo flusso all'indietro ne permette un calcolo efficiente.
 
+#### Discesa del gradiente
+
+Esistono 3 varianti della discesa dell gradiente, le quali si differenziano per il numero di dati utilizzati per calcolare il gradiente della funzione. 
+
+##### Batch Gradient Descent
+
+Calcola il gradiente della funzione per i parametri $\Theta$ sull'intero training set. 
+$$ \theta = \theta - η · \grad_{\theta}J(\theta)$$
+
+Questa tecnica può risultare molto lenta e diventa impraticabile nel caso in cui il dataset non si adatta alla memoria. 
+
+##### Stochastic gradient descent
+
+Esegue un aggiornamento dei parametri per ogni dato di training $x^{(i)}$ e label $y^{(i)}$
+$$ \theta = \theta - η · \grad_{\theta}J(\theta;\ x^{(i)}; \ y^{(i)})$$
+
+Batch gradient descent esegue calcoli ridondanti per grandi insiemi di dati, poichè ricalcola i granienti per esempi simili prima di ogni aggiornamento dei parametri. 
+SGD elimina questa ridondanza eseguendo un aggiornamento alla volta. Gli aggiornamenti sono frequenti e ad alta varianza, causano per questo una fluttuazione pesante alla funzione obiettivo. 
+A differenza del batch gradient descent, che riesce a trovare minimi solo del bacino nel quale sono collocati i dati, SGD, grazie alla sua fluttuazione riesce a saltare verso nuovi minimi locali. D'altra parte questo complica la convergenza ad un minimo esatto. Tuttavia, è stato dimostrato che diminuendo lentamente il learning rate, converge sicuramente ad un minimo locale in caso di funzione non convessa, o ad un minimo globale in caso di funzione convessa. 
+
+##### MiniBatch Gradient Descent
+
+Combina le due tecniche precedenti, eseguendo un aggiornamento per ogni mini-batch di n esempi di training. 
+$$ \theta = \theta - η · \grad_{\theta}J(\theta;\ x^{(i\ :\ i+n)}; \ y^{(i\ :\ i+n)})$$
+Riducendo la varianza degli aggiornamenti si ottiene una convergenza più stabile. 
+E' l'algoritmo più utilizzato nelle reti neurali. 
+
 ### Feed Forward Neural Network
 
 Le reti Feed Forward sono uno dei modelli più antichi. Questo approccio è stato usato per la prima volta negli anni 50.  All'interno di queste reti, le informazioni viaggiano solo in avanti, non esistono collegamenti all'indietro o sul nodo stesso. La rete contiene uno strato nascosto, che collega lo strato di input e quello di output. Tutti i nodi sono fortemente connessi.  
 
 ### Recurrent Neural Network
 
-Le reti neurali ricorrenti sono una classe di reti neurali utili per modellare sequenze di dati o serie temporali. Sono molto utlizzate per problemi di traduzione della lingue, natural language processing, riconoscimento del parlato e completamento del testo. Si distinguono dalle reti Feed Forward per la loro memoria, in quanto prendono informazioni dagli input precedenti per influenzare l'input e l'output attuali.
+Le reti neurali ricorrenti sono una classe di reti neurali utili per modellare sequenze di dati o serie temporali. Sono molto utlizzate per problemi di traduzione della lingua, natural language processing, riconoscimento del parlato e completamento del testo. Si distinguono dalle reti Feed Forward per la loro memoria, in quanto prendono informazioni dagli input precedenti per influenzare l'input e l'output attuali.
 Un'altra caratteristica che distingue le reti ricorrenti è che condividono i parametri tra ogni strato della rete. Sfruttano l'algoritmo di backpropagation through time (BPTT), leggermente diverso dall'algoritmo di backpropagation tradizionale, il quale somma gli errori ad ogni passo temporale. 
-Proprio per questa loro peculiarità, le reti ricorrenti tendono ad incorrere in due problemi, noti come gradiente esplosivo e gradiente in dissolvenza. Quando il gradiente è troppo piccolo, continua a diminuir, aggiornando i pesi finchè non diventano nulli. Quando accade ciò, l'algoritmo non sta più imparando. 
+Proprio per questa loro peculiarità, le reti ricorrenti tendono ad incorrere in due problemi, noti come gradiente esplosivo e gradiente in dissolvenza. Quando il gradiente è troppo piccolo, continua a diminuire, aggiornando i pesi finchè non diventano nulli. Quando accade ciò, l'algoritmo non sta più imparando. 
 Il gradiente esplosivo si verifica quando il gradiente è troppo grande, i pesi del modello cresceranno troppo e il modello diventerà instabile. 
 Una delle soluzioni più adottate è ridurre il numero di strati nascosti, eliminando quindi una parte della complessità. 
 
@@ -212,11 +240,9 @@ Sono composte di tre layer principali:
 - Pooling Layer 
 - Layer densamente connessi (Dense Layer)
 
+Oltre a questi vengono anche utilizzati layer di Dropout e Flatten. 
 
 
-### Layer più importanti
-
-I layer più importanti per comporre una rete sono: i layer convoluzionali, i pooling layer e i layer dense. Il dropout layer si è rivelato un layer importante nella regolarizzazione. 
 
 #### Dense layer
 
@@ -250,6 +276,8 @@ Qualche considerazione sul dropout:
 2. Il dropout raddoppia approssimativamente il numero di iterazioni richieste per convergere. Tuttavia il tempo di addestramento per ogni epoca è inferiore. 
 3. Con H unità nascoste che possono essere eliminate, abbiamo $2^H$​​ ​modelli possibili. 
 
+
+
 #### Flatten Layer
 
 Lo strato flatten serve a rimuovere tutte le dimensionalità eccetto una. In altre parole, partendo da una matrice, viene creato un array unidimensionale. 
@@ -270,18 +298,116 @@ Viceversa, quando un algoritmo è caratterizzato da un'alto bias e una bassa var
 
 ## Acquisizione dei dati 
 
+Quando si parla di dataset contenenti video di persone che camminano, bisogna distinguere quelli utilizzati per il riconoscimento della camminata da quelli utilizzati per analisi medica. 
+Online si trovano diversi dataset per il riconoscimento della camminata, mentre è molto più difficile trovarne adatti all'analisi medica. I gruppi di ricerca che ne possiedono, difficilmente li condividono online, a causa dei problemi etici e di privacy. 
+I pochi dataset che sono stati utilizzati per l'analisi della camminata non forniscono i video o le immagini ma solo le silhouettes, le quali possono presentare anche errori di segmentazione. 
+La decisione è stata quella di creare autonomamente il dataset. 
+Il dataset creato è composto da 322 video della durata media di 6/7 secondi, nel quale il soggetto cammina parallelamente alla telecamera in avanti e poi torna indietro. 
+Le camminate possono essere di tre tipi: 
+
++ Normale (106 video)
++ Lievemente Anormale (113 video)
++ Fortemente Anormale (103 video)
+
+I video sono stati registrati con una risoluzione di 480p. La qualità dei video è stata tenuta bassa appositamente per non creare un dataset troppo grande in termini di memoria occupata e per assicurarsi che l'esperimento fosse riproducibile anche con telecamere meno precise. 
+
+
+
+## Image Pre-processing
+
+Successivamente all'acquisizione, si è passati alla fase di pre-processing nella quale i vide sono stati elaborati per semplificarne i dati rappresentati, mantenendo comunque le informazioni rilevanti. 
+Esistono diverse tecniche per pre-processare le immagini. In questo esperimento si è deciso di utilizzare la libreria OpenPose. 
+
 ### OpenPose
 
 OpenPose è una libreria opensource per la stima della posizione umana. Propone un metodo basato su una rappresentazione non parametrica, chiamata Part Affinity Fields (PAFs), per imparare ad associare parti del corpo con gli individui nell'immagine [[7]](#7).  A differenza delle altre soluzioni, OpenPose utilizza un approccio bottom-up, prima rileva tutte le parti del corpo presenti nell'immagine e poi le associa agli individui.
+Il processo di rilevamento delle immagini avviene in 3 fasi: 
+
++ **Stage 0**: Viene utilizzata VGGNet per creare una mappa delle feature dell'immagine di input. VGGNet è una rete convoluzionale proposta da K. Simonyan e A. Zisserman nel paper “Very Deep Convolutional Networks for Large-Scale Image Recognition”. Il modello ha raggiunto il 92.7% di accuratezza nei test su image-net, un dataset contenente più di 14 milioni di immagini, appartenenti a 1000 classi. 
++ **Stage 1** : viene utilizzata una rete convoluzionale a 2 branch e a più stadi, dove il primo branch predice un insieme di mappe di confidenza 2D delle posizioni delle parti del corpo (per esempio il gomito, il ginocchio ecc...). Il secondo branch predice un insieme di campi vettoriali 2D di affinità delle parti, che codificano il grado di associazione tra le parti
++ **Stage 2**: Le mappe di confidenza e affinità sono analizzate tramite algoritmi greedy per produrre i punti chiave 2D per tutte le persone nell'immagine.
 
 L'input è una immagine RGB. L'architettura multi-stage delle Reti Neurali Convoluzionali (CNN) predice prima l'insieme di PAFs, i campi vettoriali 2D, e le mappe di confidenza di rilevamento, che indicano la probabilità che una particolare parte del corpo possa essere localizzata in un determinato pixel. La figura mostra il procedimento seguito. 
 
-Il tool è disponibile gratuitamente e può essre utilizzato su differenti piattaforme hardware e software. E' possibile personalizzare alcune impostazioni come la sorgente di input, che può essere una immagine, un video oppure la webcam. 
+Il tool è disponibile gratuitamente e può essere utilizzato su differenti piattaforme hardware e software. E' possibile personalizzare alcune impostazioni come la sorgente di input, che può essere una immagine, un video oppure la webcam. 
 Una volta che il video è stato acquisito, OpenPose restituisce un file in formato JSON per ogni frame del video, contenente le coordinate 2D di ogni keypoint rilevato e la rispettiva confidenza nell'affermare che quel keypoint sia in quell'esatto pixel. 
 
 Nel paper di riferimento, viene dimostrato come un algoritmo di parsing greedy è sufficiente per produrre una rappresentazione della posa di alta qualità, conservando l'efficienza indipendentemente dal numero di persone.
 
-## Analisi dell'andatura proposto
+I keypoint rilevati sono 25 e sono i seguenti:
+
+0. Nose
+1. Neck
+2. Right Shoulder
+3. Right Elbow
+4. Right Wrist
+5. Left Shoulder
+6. Left Elbow
+7. Left Wrist
+8. Middle Hip
+9. Right Hip
+10. Right Knee
+11. Right Ankle
+12. Left Hip
+13. Left Knee
+14. Left Ankle
+15. Right Eye
+16. Left Eye
+17. Right Ear
+18. Left Ear
+19. Left Big Toe
+20. Left Small Toe
+21. Left Heel
+22. Right Big Toe
+23. Right Small Toe
+24. Right Heel
+
+
+
+## Creazione delle feature
+
+L'output di Openpose può essere salvato in un vettore a 4 dimensioni (video, frame, keypoints, coordinate)
+
+I video hanno tutti lunghezza diversa, si è scelto quindi di prendere in considerazione solo i primi 100 frame. 
+
+A questo punto i dati sarebbero già pronti per poter alleare la rete neurale.
+Il problema di questa rappresentazione è che è strettamente dipendente dal modo in cui sono stati registrati i video: le coordinate (x, y) dipendono dalla distanza fra la telecamera e il soggetto ripreso e dalla sua altezza. Essendo le camminate effettuate tutte dalla stessa persona, un approccio di questo genere avrebbe portato buoni risultati sul training set e sul validation set, ma non sarebbe stato in grado di generalizzare nel momento in cui gli fosse stato richiesto di classificare il video di una camminata registrata in condizioni e con individui diversi. 
+L'approccio adottato è stato quello di calcolare per ogni frame di ogni video, gli angoli creati dal movimento degli arti, come per esempio l'angolo del gomito e del ginocchio. 
+Dati 3 keypoints A, B e C, è possibile calcolare l'angolo $A\hat{B}C$ come: 
+
+$$ angolo = \cos^{-1}(\frac{\overrightarrow{AB} \ · \ \overrightarrow{BC}}{|\overrightarrow{AB}| \ · \ |\overrightarrow{BC}| }) $$. 
+
+Dati i 25 keypoints, sono stati scelti gli angoli calcolati sulle le seguenti terne: 
+
+(0, 1, 8), (0, 1, 2), (0, 1, 5), (1, 2, 3), (2, 3, 4), (1, 5, 6), (5, 6, 7),  (1, 12, 13),  (1, 9, 10),  (8, 9, 10),  (8, 12, 13),  (9, 10, 11),  (12, 13, 14),  (10, 11, 22),  (13, 14, 19), (0, 8, 11),  (0, 8, 14),  (1, 8, 11),  (1, 8, 14)
+
+Sono stati valutati gli angoli che evidenziavano maggiormente le differenze fra una camminata normale e una anomala.
+
+Questa soluzione porta ad una diminuzione della dimensionalità del vettore da 4 a 3 dimensioni, e di conseguenza ad un dataset più leggero. Permette inoltre di avere features che siano indipendenti dal soggetto registrato e dalla telecamera utilizzata.
+
+Il dataset definitivo è un vettore 3d della forma (video, frame, angolo)
+
+Dati i 322 video registrati, possiamo notare come i dati da elaborare inizialmente fossero 322 * 100 * 25 * 2 = 1.610.000, mentre con la nuova soluzione 322 * 100 * 19  = 611.000. 
+
+
+
+## Classificazione
+
+
+
+ 
+
+#### Funzione di loss
+
+La funzione di loss sceltà e la categoricall cross entropy, che la funzione di loss di default per i problemi di classificazione multi classe con singola label di output. 
+La funzione calcola l'errore eseguendo la somma: 
+$$ Loss = - \sum_{i = 1}^{output\ size} y_i · log (\hat{y}_i)$$
+Dove $\hat{y}_i$ rappresenta l'i-esimo scalare nei valori di output,  mentre $y_i$ è l'i-esimo valore osservato.  Output size corrisponde al numero di valori di output del modello. 
+
+Questa funzione si è dismostrata una buona misura di quanto due distribuzioni di probabilità discrete siano distinguibili l'una dall'altra. 
+Il segno meno assicura che la perdita diventi più piccola quando le distribuzioni si avvicinano l'una all'altra. 
+
+
 
 ## Risultati
 
